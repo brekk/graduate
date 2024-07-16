@@ -1,0 +1,37 @@
+import Dict from "Dictionary"
+import List from "List"
+
+
+
+export type Grade = Gr1 | Gr2 | Gr3 | Gr4 | Gr5 | Gr6 | Gr7 | Gr8
+
+
+interface Gradated a {
+  graded :: Show a => a -> Grade
+}
+
+export alias GradeCheck = #[Grade, Grade, Grade, Grade, Grade, Grade, Grade, Grade]
+export alias GradeSet = #[String, String, String, String, String, String, String, String]
+
+DEFAULT_GRADES :: GradeSet
+export DEFAULT_GRADES = #["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+
+toGradeSet :: String
+  -> String
+  -> String
+  -> String
+  -> String
+  -> String
+  -> String
+  -> String
+  -> GradeSet
+export toGradeSet = (a, b, c, d, e, f, g, h) => #[a, b, c, d, e, f, g, h]
+
+makePattern :: GradeSet -> Dictionary Grade String
+export makePattern = where {
+  #[a, b, c, d, e, f, g, h] =>
+    pipe(
+      List.zip([Gr1, Gr2, Gr3, Gr4, Gr5, Gr6, Gr7, Gr8]),
+      Dict.fromList,
+    )([a, b, c, d, e, f, g, h])
+}

@@ -1,0 +1,13 @@
+import Fn from "Function"
+import IO from "IO"
+
+import Spark from "@/Spark"
+
+
+
+main = () => {
+  pipe(
+    Spark.makePattern,
+    IO.pTrace("INPUT"),
+  )(Spark.DEFAULT_GRADES)
+}
